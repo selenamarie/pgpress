@@ -38,7 +38,7 @@ while ( my $row = $csv->getline( $fh ) ) {
 	if ($continent_old ne $continent) { 
 		# print the continent
 		print "</dl>\n" if ($notfirst);
-		print "<h2>" . $continent . "</h2>\n";
+		print "<h2>" . uc($continent) . "</h2>\n";
 		print "<dl>\n";
 		$notfirst = 1;
 	}
