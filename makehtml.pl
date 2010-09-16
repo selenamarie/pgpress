@@ -7,7 +7,8 @@ my $csv = Text::CSV->new ( { binary => 1 } )  # should set binary attribute.
 
 open (my $fh, qq{/usr/bin/psql -AX -qt pgcontacts -c \"copy ( select continent, region, textcat_all(name ||E'\n<br/>'), pgemail, url, office_phone, cell_phone,xtra_line from people where verified = 't' group by region, continent, pgemail, url, xtra_line, office_phone, cell_phone order by continent,region ) to stdout csv \"| }) or die "can't get info from postgres!\n";
 
-my ($continent_old, $region_old);
+my $continent_old = '';
+my $region_old = '';
 
 my $notfirst = 0;
 print <<__HEADER__;
